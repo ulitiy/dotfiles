@@ -43,7 +43,6 @@ set relativenumber
 set hidden
 set statusline=...%{ObsessionStatus()}...
 let g:ctrlp_show_hidden = 1
-autocmd TextChanged,TextChangedI * silent write
 augroup sourcesession
         autocmd!
         autocmd VimEnter * nested
@@ -87,16 +86,24 @@ Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/syntastic'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'kchmck/vim-coffee-script'
+Plug '907th/vim-auto-save'
+Plug 'benmills/vimux'
+Plug 'kana/vim-textobj-user'
+Plug 'nelstrom/vim-textobj-rubyblock'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+"obsession
 "vim-run-interactive
 
 call plug#end()
 
+let mapleader = " "
 set tabstop=2
 set shiftwidth=2
 set shiftround
 set expandtab
 set list listchars=tab:»·,trail:·,nbsp:·
-let mapleader = " "
 set backspace=2   " Backspace deletes like most programs in insert mode
 set nobackup
 set nowritebackup
@@ -108,6 +115,13 @@ set incsearch     " do incremental searching
 set laststatus=2  " Always display the status line
 set autowrite     " Automatically :write before running commands
 set nojoinspaces
+let g:auto_save = 1
+let g:airline_powerline_fonts = 1
+let g:airline_theme='luna'
+let NERDTreeShowHidden=1
 
 map <C-n> :NERDTreeToggle<CR>
+map <D-/> :TComment<CR>
+map <C-c> :TComment<CR>
 
+let mapleader = " "
