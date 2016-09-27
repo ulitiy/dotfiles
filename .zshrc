@@ -86,4 +86,5 @@ eval "$(rbenv init -)"
 # zsh: add the following to either .zshenv or .zshrc
 alias dokku='bash $HOME/.dokku/contrib/dokku_client.sh'
 alias vim='mvim -v'
+export EDITOR='vim'
 
