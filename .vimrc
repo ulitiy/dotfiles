@@ -22,7 +22,7 @@ filetype plugin indent on
 set number
 set numberwidth=5
 
-nnoremap <leader><leader> <c-^>
+nnoremap <leader><leader> <C-^>
 
 " Get off my lawn
 nnoremap <Left> :echoe "Use h"<CR>
