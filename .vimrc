@@ -93,14 +93,38 @@ Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-"obsession
+" Plug 'Valloric/YouCompleteMe'
+" Plug 'oblitum/YouCompleteMe'
+" Plug 'leafgarland/typescript-vim'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'Quramy/tsuquyomi'
+Plug 'suan/vim-instant-markdown'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+" Plug 'jason0x43/vim-js-indent'
 "vim-run-interactive
 
 call plug#end()
+" Typescript Support
+" if !exists("g:ycm_semantic_triggers")
+  " let g:ycm_semantic_triggers = {}
+" endif
+" let g:ycm_semantic_triggers['typescript'] = ['.']
+" let g:tsuquyomi_disable_quickfix = 1
+" let g:syntastic_typescript_checkers = ['tsuquyomi', 'tslint']
+" autocmd FileType typescript inoremap <C-f> <C-o>:echo tsuquyomi#hint()<CR>
+" let g:tsuquyomi_completion_detail = 1
+autocmd FileType typescript setlocal completeopt=menuone,preview,noselect
+" setlocal completeopt-=longest
+" End Typescript Support
 
+set shortmess+=c
+:set noshowmode
+let g:syntastic_aggregate_errors = 1
 let mapleader = " "
 set tabstop=2
 set shiftwidth=2
+set scrolloff=20
 set shiftround
 set expandtab
 set list listchars=tab:»·,trail:·,nbsp:·
@@ -121,7 +145,21 @@ let g:airline_theme='luna'
 let NERDTreeShowHidden=1
 
 map <C-n> :NERDTreeToggle<CR>
-map <D-/> :TComment<CR>
 map <C-c> :TComment<CR>
 
 let mapleader = " "
+
+" CtrlP auto cache clearing.
+" ----------------------------------------------------------------------------
+function! SetupCtrlP()
+  if exists("g:loaded_ctrlp") && g:loaded_ctrlp
+    augroup CtrlPExtension
+      autocmd!
+      autocmd FocusGained  * CtrlPClearCache
+      autocmd BufWritePost * CtrlPClearCache
+    augroup END
+  endif
+endfunction
+set wildignore+=*/node_modules/*
+autocmd VimEnter * :call SetupCtrlP()
+
