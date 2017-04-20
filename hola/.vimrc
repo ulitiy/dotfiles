@@ -24,12 +24,15 @@ set numberwidth=5
 
 nnoremap <backspace> <C-^>
 nnoremap <leader><leader> :FZF<CR>
-nnoremap <leader>u :call fzf#run({'source': 'cvsu \| sed "s/[FMOGR] //"',
-      \ 'sink': 'vsplit', 'down': '25%'})<CR>
+nnoremap Y y$
+nnoremap <leader>a :Ag 
+nnoremap <leader>u :call fzf#run(fzf#wrap('cvsu',
+      \ {'source': 'cvsu \| sed "s/[FMOGRA?] //"', 'down': '25%'}, 0))<CR>
 imap kk <Esc>
 imap jj <Esc>
 imap jk <Esc>
 imap kj <Esc>
+nnoremap <C-p> ciw<C-r>0<ESC>
 
 " MY OWN CODE HERE
 set relativenumber
@@ -58,7 +61,7 @@ augroup reload_vimrc " {
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END " }
 
-Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'airblade/vim-rooter'
 Plug 'tpope/vim-surround'
